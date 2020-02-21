@@ -67,3 +67,23 @@ function startCMS() {
             }
         });
 }
+
+function addDepartment() {
+    inquirer
+        .prompt({
+            name: "department",
+            type: "input",
+            message: "Which department would you like to create?"
+        })
+        .then(function (answer) {
+            console.log(answer.department);
+            connection.query("INSERT INTO department SET ?", 
+            {
+                name: answer.department,
+            },
+            function (err, res) {
+                if (err) throw err;
+                startCMS();
+            });
+        });
+}
