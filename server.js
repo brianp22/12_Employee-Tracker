@@ -95,7 +95,7 @@ function addRole() {
             type: "input",
             name: "role"
         },{
-            message: "What's the salary for this role?",
+            message: "Please enter the annual salary:",
             type: "input",
             name: "salary"
         },
@@ -114,7 +114,50 @@ function addRole() {
             },
             function (err, res) {
                 if (err) throw err;
-                runSearch();
+                startCMS();
+            });
+        });
+}
+
+function addEmployee() {
+    var questions = [
+        {
+            message: "Please enter employee's first name:",
+            type: "input",
+            name: "first_name"
+        },
+        {
+            message: "Now enter the last name:",
+            type: "input",
+            name: "last_name"
+        },
+        {
+            message: "Is this employee a manager? '1' for YES, '2' for NO:",
+            type: "input",
+            name: "roleID"
+        },
+        {
+            message: "Does this employee have a manager? '1' for YES, '0' for NO",
+            type: "input",
+            name: "managerID"
+        },
+        
+        ];
+    
+    inquirer
+        .prompt(questions)
+        .then(function (answer) {
+            connection.query("INSERT INTO employee SET ?", 
+            {
+                first_name: answer.first_name,
+                last_name: answer.last_name,
+                manager_id: answer.managerID,
+                role_id: answer.roleID,
+                
+            },
+            function (err, res) {
+                if (err) throw err;
+                startCMS();
             });
         });
 }
