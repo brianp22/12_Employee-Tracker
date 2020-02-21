@@ -9,3 +9,9 @@ var connection = mysql.createConnection({
     password: "Mysql22!",
     database: "employeeDB"
 });
+
+connection.connect(function (err) {
+    if (err) throw err;
+    runSearch();
+});
+
