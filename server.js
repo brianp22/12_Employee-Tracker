@@ -181,3 +181,13 @@ function viewRoles() {
         startCMS();
     });
 };
+
+function viewEmployees() {
+
+    var query = "SELECT * from employee";
+    connection.query(query, function (err, res) {
+        if (err) throw err;
+        console.table(res);
+        startCMS();
+    });
+};
