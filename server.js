@@ -73,7 +73,7 @@ function addDepartment() {
         .prompt({
             name: "department",
             type: "input",
-            message: "Which department would you like to create?"
+            message: "Please type the name of the department you'd like to add:"
         })
         .then(function (answer) {
             console.log(answer.department);
@@ -84,6 +84,37 @@ function addDepartment() {
             function (err, res) {
                 if (err) throw err;
                 startCMS();
+            });
+        });
+}
+
+function addRole() {
+    var questions = [
+        {
+            message: "Please type the name of the role you'd like to add:",
+            type: "input",
+            name: "role"
+        },{
+            message: "What's the salary for this role?",
+            type: "input",
+            name: "salary"
+        },
+        
+        ];
+    
+    inquirer
+        .prompt(questions)
+        .then(function (answer) {
+            console.log(answer.role);
+            console.log(answer.salary);
+            connection.query("INSERT INTO role SET ?", 
+            {
+                title: answer.role,
+                salary: answer.salary
+            },
+            function (err, res) {
+                if (err) throw err;
+                runSearch();
             });
         });
 }
