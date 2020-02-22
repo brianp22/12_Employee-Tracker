@@ -191,3 +191,36 @@ function viewEmployees() {
         startCMS();
     });
 };
+
+function updateRole() {
+    var questions = [
+        {
+            message: "Change role? ('1' for Manager, '2' for Architect)",
+            type: "input",
+            name: "roleID"
+        },
+        {
+            message: "What's the employee_id?",
+            type: "input",
+            name: "employeeID"
+        },
+    ];
+    
+    inquirer
+        .prompt(questions)
+        .then(function (answer) {
+        
+            connection.query("UPDATE employee SET ? WHERE ?", 
+            [{
+                role_id: answer.roleID        
+            },
+            {
+                employee_id: answer.employeeID    
+            }],
+           
+            function (err, res) {
+                if (err) throw err;
+                startCMS();
+            });
+        });
+}

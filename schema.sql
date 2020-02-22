@@ -33,7 +33,7 @@ INSERT INTO department (name)
 VALUES ("Information Technology"),("Legal");
 
 INSERT INTO role (title, salary)
-VALUES ("Architect", 150000), ("Manager",100000);
+VALUES ("Manager", 150000), ("Architect",100000);
 
 INSERT INTO employee (first_name, last_name, manager_id, role_id)
 VALUES ("George", "Washington", 01, 2),("Abe", "Lincoln", 01, 2 ), ("Suzy", "Anthony", 01, 2), ("Benny", "Franklin", 0, 1);
