@@ -1,8 +1,8 @@
 
-var mysql = require("mysql");
-var inquirer = require("inquirer");
+const mysql = require("mysql");
+const inquirer = require("inquirer");
 
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
     host: "localhost",
     PORT: 3306,
     user: "root",
@@ -29,7 +29,7 @@ function startCMS() {
                 "View all Roles",
                 "View all Employees",
                 "Update a Role",
-                "exit"
+                "EXIT"
             ]
         })
         .then(function (answer) {
@@ -66,7 +66,7 @@ function startCMS() {
                     break;
             }
         });
-}
+};
 
 function addDepartment() {
     inquirer
@@ -86,10 +86,10 @@ function addDepartment() {
                 startCMS();
             });
         });
-}
+};
 
 function addRole() {
-    var questions = [
+    let questions = [
         {
             message: "Please type the name of the role you'd like to add:",
             type: "input",
@@ -117,10 +117,10 @@ function addRole() {
                 startCMS();
             });
         });
-}
+};
 
 function addEmployee() {
-    var questions = [
+    let questions = [
         {
             message: "Please enter employee's first name:",
             type: "input",
@@ -160,11 +160,11 @@ function addEmployee() {
                 startCMS();
             });
         });
-}
+};
 
 function viewDepartments() {
 
-    var query = "SELECT * from department";
+    let query = "SELECT * from department";
     connection.query(query, function (err, res) {
         if (err) throw err;
         console.table(res);
@@ -174,7 +174,7 @@ function viewDepartments() {
 
 function viewRoles() {
 
-    var query = "SELECT * from role";
+    let query = "SELECT * from role";
     connection.query(query, function (err, res) {
         if (err) throw err;
         console.table(res);
@@ -193,9 +193,9 @@ function viewEmployees() {
 };
 
 function updateRole() {
-    var questions = [
+    let questions = [
         {
-            message: "Change role? ('1' for Manager, '2' for Architect)",
+            message: "Change role to: ('1' for Manager, '2' for Architect)",
             type: "input",
             name: "roleID"
         },
@@ -223,4 +223,4 @@ function updateRole() {
                 startCMS();
             });
         });
-}
+};
